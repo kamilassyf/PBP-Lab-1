@@ -1,25 +1,74 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h5>Nama: </h5>
-<b>{{nama}}</b>
 
-<table>
-    <tr>
-    <th>Nama Barang</th>
-    <th>Harga Barang</th>
-    <th>Deskripsi</th>
-    <tr>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<style>
+
+    .bg-custom{
+      background-color: rgb(90, 164, 163);
+    }
+
+    .bg-custom1{
+      background-color: rgb(39, 78, 77);
+    }
+    table,
+    th,
+    td {
+      padding: 7px;
+      text-align: center;
+      border-collapse: collapse;
+    }
+    .center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+</style>
+
+<nav class="navbar navbar-expand-lg bg-custom1">
+    <a class="navbar-brand" href="#">
+    </a>  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+      </ul>
+    </div>
+  </nav>
+
+<div class="p-3 mb-2 bg-custom text-white " >
+<h1 class="text-center">Wishlist Page</h1>
+<h2 style = "font-family:Poppins;" class="text-center">{{nama}}</h2>
+</div>
+
+<div class="p-2 mb-1 bg-light text-dark"></div>
+<table class ="center">
+    <thead class="p-3 mb-2 bg-custom text-white">
+        <tr>
+            <th scope="col" class="align-middle text-center" >Nama Barang</th>
+            <th scope="col" class="align-middle text-center">Harga Barang </th>
+            <th scope="col" class="align-middle text-center">Deskripsi</th>
+        </tr>
+    </thead>
     {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for barang in list_barang %}
-    </tr>
-        <th>{{barang.nama_barang}}</th>
-        <th>{{barang.harga_barang}}</th>
-        <th>{{barang.deskripsi}}</th>
-    </tr>
-    {% endfor %}
+{% for barang in list_barang %}
+    <tbody>
+        <tr style="background-color: rgb(199, 251, 250);">
+            <th>{{barang.nama_barang}}</th>
+            <th>{{barang.harga_barang}}</th>
+            <th>{{barang.deskripsi}}</th>
+        </tr>
+    </tbody>
+{% endfor %}
 </table>
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+
+<div class="p-5 text-center">
+    <button class="btn btn-outline-success" type="button" ><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+</div>
+
+<br>
+<h6><center>Sesi terakhir login: {{ last_login }}</h6></center>
+
+<br><br><br>
+</div>
 
 {% endblock content %}

@@ -18,7 +18,7 @@ def show_wishlist(request):
     
     context = {
         'list_barang': data_barang_wishlist,
-        'nama': 'Cipaa',
+        'nama': 'Syifa Cahya Kamila',
         'last_login': request.COOKIES['last_login'],
 
     }
