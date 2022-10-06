@@ -22,7 +22,28 @@ def show_wishlist(request):
         'last_login': request.COOKIES['last_login'],
 
     }
-    return render(request, "wishlist.html", context)    
+    return render(request, "wishlist.html", context) 
+
+@login_required(login_url='/wishlist/login/')
+def show_wishlist_ajax(request):    
+    context = {
+        'nama': 'Syifa Cahya Kamila',
+        'last_login': request.COOKIES['last_login'],
+
+    }
+    return render(request, "wishlist_ajax.html", context) 
+
+@login_required(login_url='/wishlist/login/')
+def wishlist_ajax_submit(request):
+    if request.method == 'POST':
+        newBarang =BarangWishlist(
+            nama_barang = request.POST.get('nama_barang'),
+            harga_barang = request.POST.get('harga_barang'),
+            deskripsi_barang = request.POST.get('deskripsi'),
+        )
+        newBarang.save()
+    return HttpResponseRedirect(reverse("wishlist:show_wishlist_ajax"))
+
 
 def show_xml (request):
     data = BarangWishlist.objects.all()
